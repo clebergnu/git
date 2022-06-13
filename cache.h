@@ -1886,6 +1886,7 @@ void overlay_tree_on_index(struct index_state *istate,
 /* setup.c */
 struct startup_info {
 	int have_repository;
+	int unsafe_repository;
 	const char *prefix;
 	const char *original_cwd;
 };

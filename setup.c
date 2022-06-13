@@ -1393,6 +1393,7 @@ const char *setup_git_directory_gently(int *nongit_ok)
 			    dir.buf, quoted.buf);
 		}
 		*nongit_ok = 1;
+		startup_info->unsafe_repository = 1;
 		break;
 	case GIT_DIR_NONE:
 		/*

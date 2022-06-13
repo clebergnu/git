@@ -654,8 +654,15 @@ int cmd_config(int argc, const char **argv, const char *prefix)
 	}
 
 	if (nongit) {
-		if (use_local_config)
-			die(_("--local can only be used inside a git repository"));
+          if (use_local_config) {
+            if (startup_info->unsafe_repository)
+              die(_("unsafe repository (it is owned by someone else)\n"
+                    "To add an exception for this directory, call:\n"
+                    "\n"
+                    "\tgit config --global --add safe.directory \"$directory\""));
+            else
+              die(_("--local can only be used inside a git repository"));
+          }
 		if (given_config_source.blob)
 			die(_("--blob can only be used inside a git repository"));
 		if (use_worktree_config)
